@@ -30,7 +30,6 @@ app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 
-# TODO: Configure Flask-Login
 
 
 # CREATE DATABASE
@@ -145,7 +144,7 @@ def register():
     return render_template("register.html", form=form, current_user=current_user)
 
 
-# TODO: Retrieve a user from the database based on their email. 
+
 @app.route('/login', methods=["GET", "POST"])
 def login():
     form = LoginForm()
@@ -182,7 +181,7 @@ def get_all_posts():
     return render_template("index.html", all_posts=posts, current_user=current_user)
 
 
-# TODO: Allow logged-in users to comment on posts
+
 @app.route("/post/<int:post_id>", methods=["GET", "POST"])
 def show_post(post_id):
     requested_post = db.get_or_404(BlogPost, post_id)
@@ -213,7 +212,7 @@ def admin_only(f):
     return wrapper
 
 
-# TODO: Use a decorator so only an admin user can create a new post
+
 @app.route("/new-post", methods=["GET", "POST"])
 @admin_only
 def add_new_post():
@@ -233,7 +232,7 @@ def add_new_post():
     return render_template("make-post.html", form=form, current_user=current_user)
 
 
-# TODO: Use a decorator so only an admin user can edit a post
+
 @app.route("/edit-post/<int:post_id>", methods=["GET", "POST"])
 @admin_only
 def edit_post(post_id):
@@ -256,7 +255,7 @@ def edit_post(post_id):
     return render_template("make-post.html", form=edit_form, is_edit=True, current_user=current_user)
 
 
-# TODO: Use a decorator so only an admin user can delete a post
+
 @app.route("/delete/<int:post_id>")
 @admin_only
 def delete_post(post_id):
